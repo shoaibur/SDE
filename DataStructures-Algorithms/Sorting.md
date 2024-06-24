@@ -1,13 +1,70 @@
 # Searching Algorithms
 
 ## Linear search
+Linear search is a sequential searching algorithm where we start from one end and check every element of the list until the desired element is found. It is the simplest searching algorithm.
+* Algorithm
+  * Input: nums array, target
+  * For each item at position i:
+    * If nums[i] == target:
+      * return i
+  * Output: target index
+  ```
+  def linear_search(nums):
+    '''
+    T: O(n) and S: O(1)
+    '''
+    for i in range(len(nums)):
+        if nums[i] == target:
+            return i
+    return -1
+  ```
+* Complexity analysis
+  * Time complexity: min number of search is 1 and max number of search is n. Therefore, average number of search is n/2.
+    * T(n) = O(n/2) = O(n)
+  * Space complexity: No additional space required, O(1)
+
 
 ## Binary search
-
+Binary search is an efficient algorithm for finding an item from an ordered list of items. It works by repeatedly dividing in half the portion of the list, until narrowing down the possible locations to just one. The time complexity reduces from O(n) to O(logn).
+* Algorithm
+  * Input: nums array, target
+  * Initialize left and right pointers
+  * While left <= right:
+    * Compute mid pointer
+    * If mid item == target:
+      * return mid
+    * Else if target > mid item:
+      * left = mid + 1
+    * Else
+      * right = mid - 1
+  * Output: target index
+  ```
+  def binary_search(nums):
+    '''
+    T: O(log n) and S: O(1)
+    '''
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = (left + right) / 2
+        if nums[mid] == target:
+           return mid
+        else if target > nums[mid]:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+  ```
+* Complexity analysis
+  * Time complexity: At each iteration, the search array length becomes half. So, for at most `x` required searches, we say
+    * 2^x = n or, x = log2 n, therefore
+    * T(n) = O(log2 n) = O(log n)
+  * Space complexity: No additional space required, O(1)
 
 # Sorting Algorithms
 
 ## Insertion sort
+It repeatedly take an element from the input data and inserts it into the position so that its value is between the previous and the next element.
 * Algorithm
   * Input: nums array
   * For each item at position i:
@@ -36,6 +93,7 @@
 
 
 ## Bubble sort
+It compares adjacent elements and swaps them if they are in the wrong order.
 * Algorithm
   * Input: nums array
   * For each item:
@@ -65,6 +123,7 @@
 
 
 ## Selection sort
+It repeatedly finds the minimum element from unsorted part and puts it at the beginning.
 * Algorithm
   ```
   def selectionSort(nums):
@@ -87,6 +146,7 @@
 
 
 ## Merge Sort
+It divides the array in half, sorts each of those halves, and then merges them together.
 * Algorithm
   * Input: nums array
   * func mergeSort(nums):
@@ -144,6 +204,7 @@
 
 
 ## Quick sort
+It partitions the array into two subarrays based on the pivot, move the larger ones to the right, and smaller ones to the left.  
 * Algorithm
   ```
   def quickSort(nums):

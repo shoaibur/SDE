@@ -50,11 +50,135 @@
   * Traversal
     * DFS
       * Preorder
-      * Inorder
-      * Postorder
-    * BFS
+      ```
+      def preorderTraversal(root):
+          # Iterative
+          res, stack = [], []
+          while root or stack:
+              if root:
+                  stack.append(root)
+                  res.append(root.val)
+                  root = root.left
+              else:
+                  node = stack.pop()
+                  root = node.right
+          return res
 
-### Leetcode exeercises on trees
+
+          # Recursive
+          res = []
+          def preorder(root):
+              if root:
+                  res.append(root.val)
+                  preorder(root.left)
+                  preorder(root.right)
+
+          preorder(root)
+          return res
+      ```
+      * Inorder
+      ```
+      def inorderTraversal(root):
+          # Iterative
+          res, stack = [], []
+          while root or stack:
+              if root:
+                  stack.append(root)
+                  root = root.left
+              else:
+                  node = stack.pop()
+                  res.append(node.val)
+                  root = node.right
+          return res
+
+          # Recursive
+          res = []
+          def inorder(root):
+              if root:
+                  inorder(root.left)
+                  res.append(root.val)
+                  inorder(root.right)
+          inorder(root)
+          return res
+      ```
+      * Postorder
+      ```
+      def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+          # Iterative
+          res, stack = [], []
+          while root or stack:
+              if root:
+                  stack.append(root)
+                  res.append(root.val)
+                  root = root.right
+              else:
+                  node = stack.pop()
+                  root = node.left
+          return res[::-1]
+
+          # Recursive
+          res = []
+          def postorder(root):
+              if root:
+                  postorder(root.left)
+                  postorder(root.right)
+                  res.append(root.val)
+
+          postorder(root)
+          return res
+      ```
+    * BFS
+      * Level order traversal
+      ```
+      def levelOrder(root):
+          if not root:
+              return []
+          res = []
+          q = deque()
+          q.append(root)
+
+          while q:
+              levelSize = len(q)
+              nodeCount = 0
+              temp = []
+              while nodeCount < levelSize:
+                  node = q.popleft()
+                  temp.append(node.val)
+                  if node.left:
+                      q.append(node.left)
+                  if node.right:
+                      q.append(node.right)
+                  nodeCount += 1
+              res.append(temp)
+          return res
+      ```
+      
+### Basic preparation
+* Binary tree preorder traversal
+* Binary tree inorder traversal
+* Binary tree postorder traversal
+* Binary tree level order traversal
+* Invert binary tree
+* Maximum depth of binary tree
+* Diameter of binary tree
+* Balanced binary tree
+* Same tree
+* Subtree of another tree
+* Symmetric tree
+* Lowest common ancestor of a binary tree
+* Binary three right side view
+* Count good nodes in binary three
+* Validate binary search tree
+* Kth smallest element in a BST
+* Construct binary tree from inorder and postorder traversal
+* Construct binary tree from preorder and inorder traversal
+* Path sum
+* Binary tree maximum path sum
+* Serialize and deserialize binary tree
+* Populating next right pointers in each node
+* Populating next right pointers in each node II
+
+### Advanced preparation
 * 297: Serialize and deserialize binary tree
 * 199: Binary tree right side view
 * 124: Binary tree maximum path sum
@@ -108,3 +232,5 @@
 * 701: Insert into a binary search tree
 * 1022: Sum of root to leaf binary numbers
 * 1602: Find nearest right node in binary tree
+* Count univalue subtrees
+
